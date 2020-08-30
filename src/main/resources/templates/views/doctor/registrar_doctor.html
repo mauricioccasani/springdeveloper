@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head">
+<link rel="stylesheet"
+	href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+	<script th:src="@{/js/jquery.min.js}"></script>
+	<script th:src="@{js/jqproveedor.js}"></script>
+
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini">
+	<div class="wrapper">
+
+		<!-- Main Header -->
+		<header class="main-header" th:replace="layout/layout :: header">
+
+		</header>
+		<aside class="main-sidebar" th:replace="layout/layout :: aside">
+
+		</aside>
+
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
+			<section class="content-header">
+				<h1>
+					Page Header <small>Optional description</small>
+				</h1>
+				<ol class="breadcrumb">
+					<li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
+					<li class="active">Here</li>
+				</ol>
+			</section>
+
+			<section class="content container-fluid">
+				<div class="panel panel-primary">
+					<div class="panel-heading">Medico</div>
+
+					<div class="panel panel-primary"
+						style="margin-top: 10px; margin-left: 10px; margin-right: 10px;">
+						<div class="panel-heading">Datos del medico</div>
+						<div class="panel-body">
+
+
+							<div class="row">
+
+								<div class="col-md-12">
+									<!-- Horizontal Form -->
+									<div class="box box-info">
+
+										<!-- /.box-header -->
+										<!-- <div class="alert alert-danger"
+																	th:if="${#fields.hasErrors('nombres')}"
+																	th:errors="*{nombres}"></div> -->
+										<!-- form start   -->
+										<form th:action="@{/doctor/registrar}" th:object="${doctor}"
+											method="post" class="form-horizontal">
+											<div class="box-body">
+												<div class="row">
+													<div class="col-md-6">
+														<div class="form-group">
+															<label for="idCodigo" class="col-sm-2 control-label">Código</label>
+															<div class="col-sm-10">
+																<input type="text" class="form-control" id="idCodigo"
+																	th:field="*{id}" readonly="readonly">
+															</div>
+														</div>
+													</div>
+													<div class="col-md-6">
+														<div class="form-group">
+															<label for="idNombre" class="col-sm-2 control-label">Nombres</label>
+
+															<div class="col-sm-10">
+																<input type="text" class="form-control" id="idNombre"
+																	th:field="*{nombres}" placeholder="Nombre"
+																	th:errorclass="'alert alert-danger'">
+
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-md-6">
+														<div class="form-group">
+															<label for="idNombre" class="col-sm-2 control-label">Apellidos</label>
+
+															<div class="col-sm-10">
+																<input type="text" class="form-control" id="idNombre"
+																	th:field="*{apellidos}" placeholder="Nombre"
+																	th:errorclass="'alert alert-danger'">
+
+															</div>
+														</div>
+													</div>
+													<div class="col-md-6">
+														<div class="form-group">
+															<label for="idDni" class="col-sm-2 control-label">Nro
+																Documento</label>
+															<div class="col-sm-10">
+																<input type="text" class="form-control" id="idDni"
+																	th:field="*{dni}" placeholder="Nombre"
+																	th:errorclass="'alert alert-danger'">
+
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-md-6">
+														<div class="form-group">
+															<label for="idRol" class="col-sm-2 control-label">Rol</label>
+															<div class="col-sm-10">
+																<select th:field="*{rol}" class="form-control"
+																	id="idRol" th:errorclass="'alert alert-danger'">
+																	<option value="" th:text="--Seleccione--"></option>
+																	<option th:value="'USER'">Usuario</option>
+																	<option th:value="'ADMIN'">Administrador</option>
+																</select>
+
+															</div>
+														</div>
+													</div>
+													<div class="col-md-6">
+														<div class="form-group">
+															<label for="idClave" class="col-sm-2 control-label">Password</label>
+															<div class="col-sm-10">
+																<input type="text" class="form-control" id="idClave" 
+																	th:field="*{clave}" placeholder="Clave"
+																	th:errorclass="'alert alert-danger'">
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-md-6">
+														<div class="form-group">
+															<label for="idEspecialidad"
+																class="col-sm-2 control-label">Especialidad</label>
+															<div class="col-sm-10">
+																<select th:field="*{especialidad.id}" required="true"
+																	class="form-control" id="idDistrito"
+																	th:errorclass="'alert alert-danger'">
+																	<option value="" th:text="--Seleccione--"></option>
+																	<option th:each="esp :${especialidad}"
+																		th:value="${esp.id}" th:text="${esp.nombre}" th:errorclass="'alert alert-danger'"></option>
+																</select>
+															</div>
+														</div>
+													</div>
+												</div>
+												
+											</div>
+											<!-- /.box-body -->
+											<div class="box-footer">
+												<button type="submit" class="btn btn-primary">Aceptar</button>
+												<a th:href="@{/doctor/listar}" class="btn btn-primary">Cancelar</a>
+												<a th:href="@{/doctor/nuevo}" class="btn btn-primary">Limpiar</a>
+											</div>
+											<!-- /.box-footer -->
+										</form>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+
+		<!-- Main Footer -->
+		<footer class="main-footer" th:replace="layout/layout :: footer">
+
+		</footer>
+
+		<!-- Control Sidebar -->
+		<aside class="control-sidebar control-sidebar-dark"
+			th:replace="layout/layout :: aside"></aside>
+
+		<div class="control-sidebar-bg"></div>
+	</div>
+
+	<div th:insert="layout/libreriajs :: scripjs"></div>
+
+	<script type="text/javascript" th:src="@{/datatablejs/table.js}"></script>
+
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Java</title>
+<!-- Tell the browser to be responsive to screen width -->
+<meta
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+	name="viewport">
+
+
+<link rel="stylesheet" th:href="@{css/bootstrap.min.css}">
+<!-- Font Awesome -->
+<link rel="stylesheet" th:href="@{css/font-awesome.min.css}">
+<!-- Ionicons -->
+<link rel="stylesheet" th:href="@{css/ionicons.min.css}">
+<!-- Theme style -->
+<link rel="stylesheet" th:href="@{css/AdminLTE.min.css}">
+
+<link rel="stylesheet" th:href="@{css/skin-blue.min.css}">
+
+
+
+<!-- Google Font -->
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+</head>
+<body class="hold-transition login-page" style="background: steelblue;">
+	<div class="login-box">
+		<div class="login-logo">
+			<a href="#"><b>Java</b>Spring</a>
+		</div>
+		<!-- /.login-logo -->
+		<div class="login-box-body">
+			<p class="login-box-msg">Sign in to start your session</p>
+
+			<form th:action="@{/login}" method="post">
+				
+				<div class="form-group has-feedback">
+					<input type="text" class="form-control" placeholder="Email"
+						name="username" id="username" required="required" maxlength="8"
+						autocomplete="off"> <span class="form-control-feedback"></span>
+				</div>
+				<div class="form-group has-feedback">
+					<input type="password" class="form-control" placeholder="Password"
+						name="password" id="password" maxlength="8"> <span
+						class=" form-control-feedback"></span>
+				</div>
+
+
+				<div class="row">
+					<div class="col-xs-8">
+						<div class="checkbox icheck">
+							<label for="checkRememberMe"> <input type="checkbox"
+								id="checkRememberMe" name="checkRememberMe"> Remember
+							</label>
+						</div>
+					</div>
+					<!-- /.col -->
+					<div class="col-xs-4">
+						<button type="submit" class="btn btn-primary btn-block btn-flat">Sign
+							In</button>
+					</div>
+					<!-- /.col -->
+				</div>
+
+			</form>
+			<div>
+				<div class="form-group has-feedback">
+					<div class="alert alert-danger" th:if="${param.error}" role="alert">Credencial
+						incorrecto</div>
+
+					<div class="alert alert-success" th:if="${param.logout}"
+						role="alert">Cerraste la session</div>
+				</div>
+			</div>
+
+
+		</div>
+		<!-- /.login-box-body -->
+	</div>
+	<!-- /.login-box -->
+
+
+
+
+
+	<!-- jQuery 3 -->
+	<script th:src="@{js/jquery.min.js}"></script>
+	<!-- 
+<script
+  src="https://code.jquery.com/jquery-3.5.1.min.js"
+ ></script> -->
+	<!-- Bootstrap 3.3.7 -->
+	<script th:src="@{js/bootstrap.min.js}"></script>
+
+	<script th:src="@{js/icheck.min.js}"></script>
+
+	<script>
+		$(function() {
+			$('input').iCheck({
+				checkboxClass : 'icheckbox_square-blue',
+				radioClass : 'iradio_square-blue',
+				increaseArea : '20%' /* optional */
+			});
+		});
+	</script>
+</body>
+</html>

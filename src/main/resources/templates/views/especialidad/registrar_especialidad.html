@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head">
+<link rel="stylesheet"
+	href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini">
+	<div class="wrapper">
+
+		<!-- Main Header -->
+		<header class="main-header" th:replace="layout/layout :: header">
+
+		</header>
+		<aside class="main-sidebar" th:replace="layout/layout :: aside">
+
+		</aside>
+
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
+			<section class="content-header">
+				<h1>
+					Page Header <small>Optional description</small>
+				</h1>
+				<ol class="breadcrumb">
+					<li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
+					<li class="active">Here</li>
+				</ol>
+			</section>
+
+			<section class="content container-fluid">
+				<div class="panel panel-primary">
+					<div class="panel-heading">Especialidad</div>
+
+					<div class="panel panel-primary"
+						style="margin-top: 10px; margin-left: 10px; margin-right: 10px;">
+						<div class="panel-heading">Datos del Especialidad</div>
+						<div class="panel-body">
+
+
+							<div class="row">
+
+								<div class="col-md-4">
+									<!-- Horizontal Form -->
+									<div class="box box-info">
+
+										<!-- /.box-header -->
+										<!-- form start   -->
+										<form th:action="@{/especialidad/form}" th:object="${especialidad}"
+											method="post"  class="form-horizontal">
+											<div class="box-body">
+												<div class="form-group">
+													<label for="idCodigo" class="col-sm-2 control-label">Código</label>
+													<div class="col-sm-10">
+														<input type="text" class="form-control" id="idCodigo"
+															th:field="*{id}" readonly="readonly">
+													</div>
+												</div>
+												<div class="form-group">
+													<label for="idNombre" class="col-sm-2 control-label">Nombres de Especialidad</label>
+
+													<div class="col-sm-10">
+														<input type="text" class="form-control" id="idNombre"
+															th:field="*{nombre}" placeholder="Nombre">
+														<div class="alert alert-danger"
+															th:if="${#fields.hasErrors('nombre')}"
+															th:errors="*{nombre}"></div>
+													</div>
+												</div>
+					
+												
+												
+												
+											</div>
+											<!-- /.box-body -->
+											<div class="box-footer">
+												<button type="submit" class="btn btn-primary">Aceptar</button>
+												<a th:href="@{/especialidad/listar}" class="btn btn-primary">Cancelar</a>
+											</div>
+											<!-- /.box-footer -->
+										</form>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+
+		<!-- Main Footer -->
+		<footer class="main-footer" th:replace="layout/layout :: footer">
+
+		</footer>
+
+		<!-- Control Sidebar -->
+		<aside class="control-sidebar control-sidebar-dark"
+			th:replace="layout/layout :: aside"></aside>
+
+		<div class="control-sidebar-bg"></div>
+	</div>
+
+	<div th:insert="layout/libreriajs :: scripjs"></div>
+
+	<script type="text/javascript" th:src="@{/datatablejs/table.js}"></script>
+
+</body>
+</html>

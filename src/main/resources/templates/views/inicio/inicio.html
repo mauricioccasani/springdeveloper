@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head">
+
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini">
+	<div class="wrapper">
+
+		<!-- Main Header -->
+		<header class="main-header" th:replace="layout/layout :: header">
+
+		</header>
+		<aside class="main-sidebar" th:replace="layout/layout :: aside">
+
+		</aside>
+
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
+			<section class="content-header">
+				<h1>
+					Page Header <small>Optional description</small>
+				</h1>
+				<ol class="breadcrumb">
+					<li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
+					<li class="active">Here</li>
+				</ol>
+			</section>
+
+			<section class="content container-fluid">
+				<div class="panel panel-primary">
+					<div class="panel-heading">Inicio</div>
+
+					<div class="panel panel-primary"
+						style="margin-top: 10px; margin-left: 10px; margin-right: 10px;">
+						<div class="panel-heading">Datos del inicio</div>
+						<div class="panel-body">
+							<form class="form-horizontal" id="idFormularioUsuario">
+
+								<div class="row">
+								<!-- 
+									<div class="col-sm-6 col-md-12 ">
+										<div class="alert alert-warning alert-dismissible"
+											th:if="${warning !=null}">
+											<button type="button" class="close" data-dismiss="alert"
+												aria-hidden="true">&times;</button>
+											<h4>
+												<i class="icon fa fa-check" th:text="${warning}"></i>
+											</h4>
+
+										</div>
+									</div>
+									<div class="col-sm-6 col-md-12 ">
+										<div class="alert alert-success alert-dismissible"
+											th:if="${success !=null}">
+											<button type="button" class="close" data-dismiss="alert"
+												aria-hidden="true">&times;</button>
+											<h4>
+												<i class="icon fa fa-check" th:text="${success}"></i>
+											</h4>
+
+										</div>
+									</div>
+									 -->
+									 <div class="col-sm-6 col-md-12 ">
+										<div class="alert alert-success alert-dismissible"
+											th:if="${success !=null}">
+											<button type="button" class="close" data-dismiss="alert"
+												aria-hidden="true">&times;</button>
+											<h4>
+												<i class="icon fa fa-check" th:text="${success}"></i>
+											</h4>
+
+										</div>
+									</div>
+									<div class="col-sm-6 col-md-12 ">
+										<div class="alert alert-success alert-dismissible"
+											>
+											<button type="button" class="close" data-dismiss="alert"
+												aria-hidden="true">&times;</button>
+											<h4>
+												<i class="icon fa fa-check" >Bienvenido</i>
+											</h4>
+
+										</div>
+									</div>
+
+								</div>
+
+							</form>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+
+		<!-- Main Footer -->
+		<footer class="main-footer" th:replace="layout/layout :: footer">
+
+		</footer>
+
+		<!-- Control Sidebar -->
+		<aside class="control-sidebar control-sidebar-dark"
+			th:replace="layout/layout :: aside"></aside>
+
+		<div class="control-sidebar-bg"></div>
+	</div>
+	<!-- ./wrapper -->
+
+	<div th:insert="layout/libreriajs :: scripjs"></div>
+	<script type="text/javascript" th:src="@{/datatablejs/table.js}"></script>
+</body>
+</html>

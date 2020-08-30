@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head">
+
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini">
+	<div class="wrapper">
+
+		<!-- Main Header -->
+		<header class="main-header" th:replace="layout/layout :: header">
+
+		</header>
+		<aside class="main-sidebar" th:replace="layout/layout :: aside">
+
+		</aside>
+
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
+			<section class="content-header">
+				<h1>
+					Page Header <small>Optional description</small>
+				</h1>
+				<ol class="breadcrumb">
+					<li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
+					<li class="active">Here</li>
+				</ol>
+			</section>
+
+			<section class="content container-fluid">
+				<div class="panel panel-primary">
+					<div class="panel-heading">Inicio</div>
+
+					<div class="panel panel-primary"
+						style="margin-top: 10px; margin-left: 10px; margin-right: 10px;">
+						<div class="panel-heading">Datos del inicio</div>
+						<div class="panel-body">
+							<div class="error-page">
+
+
+								<div class="error-content">
+									<h2 class="headline text-yellow">
+										<span th:text="${error}"></span>-<span th:text="${status}"></span>
+									</h2>
+									<h3>
+										<i class="fa fa-warning text-yellow"></i> No tienes autorización
+									</h3>
+									<div class="input-group">
+										<div class="input-group-btn">
+											<button class="btn btn-warning" onclick="returno()">&laquo;
+												Regresar</button>
+										</div>
+									</div>
+									<!-- /.input-group -->
+								</div>
+								<!-- /.error-content -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+
+		<!-- Main Footer -->
+		<footer class="main-footer" th:replace="layout/layout :: footer">
+
+		</footer>
+
+		<!-- Control Sidebar -->
+		<aside class="control-sidebar control-sidebar-dark"
+			th:replace="layout/layout :: aside"></aside>
+
+		<div class="control-sidebar-bg"></div>
+	</div>
+	<!-- ./wrapper -->
+
+	<div th:insert="layout/libreriajs :: scripjs"></div>
+	<script type="text/javascript" th:src="@{/datatablejs/table.js}"></script>
+	<script type="text/javascript">
+		function returno() {
+			window.history.back();
+		}
+	</script>
+</body>
+</html>

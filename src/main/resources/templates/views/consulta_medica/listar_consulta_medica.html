@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head">
+<link rel="stylesheet"
+	href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini">
+	<div class="wrapper">
+
+		<!-- Main Header -->
+		<header class="main-header" th:replace="layout/layout :: header">
+
+		</header>
+		<aside class="main-sidebar" th:replace="layout/layout :: aside">
+
+		</aside>
+
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
+			<section class="content-header">
+				<h1>
+					Page Header <small>Optional description</small>
+				</h1>
+				<ol class="breadcrumb">
+					<li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
+					<li class="active">Here</li>
+				</ol>
+			</section>
+
+			<section class="content container-fluid">
+				<div class="panel panel-primary">
+					<div class="panel-heading">Consulta Medica</div>
+
+					<div class="panel panel-primary"
+						style="margin-top: 10px; margin-left: 10px; margin-right: 10px;">
+						<div class="panel-heading">Datos de consulta medica</div>
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-sm-12">
+									<div class="box box-success">
+										<div class="box-header">
+
+
+											<div class="alert alert-success alert-dismissible"
+												th:if="${success !=null}">
+												<button type="button" class="close" data-dismiss="alert"
+													aria-hidden="true">&times;</button>
+												<h4>
+													<i class="icon fa fa-check" th:text="${success}"></i>
+												</h4>
+
+											</div>
+											<div>
+												<a th:href="@{/consultaMedica/nuevo}" class="btn btn-primary" title="Nuevo Registro"><i
+													class="fa fa-plus-square-o"></i></a>
+											</div>
+										</div>
+										<div class="box-body">
+											<!-- Table -->
+											<!-- <div class="panel panel-primary"> -->
+											<div>
+												<table id="mitabla" class="display responsive nowrap"
+													style="width: 100%">
+													<thead>
+														<tr>
+															<th>Código</th>
+															<th>Fecha</th>
+															<th>Nombre Paciente</th>
+															<th>Nombre Doctor</th>
+															<th>Ación</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr th:each="cm : ${consultaMedicas}">
+															<td th:text="${cm.id}"></td>
+															<td th:text="${cm.fecha}"></td>
+															<td th:text="${cm.paciente.nombres}"></td>
+															<td th:text="${cm.doctor.nombres}"></td>
+															<td><a th:href="@{'/consultaMedica/editar/' + ${cm.id}}" class="btn btn-primary"
+																title="Modificar"><i class="fa fa-edit"></i>
+																</a> 
+																<a th:onclick="'eliminarConsultaMedica(' + ${cm.id} + ')'" class="btn btn-primary" title="Eliminar"><i
+																	class="fa fa-trash"></i></a></td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+
+		<!-- Main Footer -->
+		<footer class="main-footer" th:replace="layout/layout :: footer">
+
+		</footer>
+
+		<!-- Control Sidebar -->
+		<aside class="control-sidebar control-sidebar-dark"
+			th:replace="layout/layout :: aside"></aside>
+
+		<div class="control-sidebar-bg"></div>
+	</div>
+
+	<div th:insert="layout/libreriajs :: scripjs"></div>
+
+	<script type="text/javascript" th:src="@{/datatablejs/table.js}"></script>
+	<script type="text/javascript">
+		function eliminarConsultaMedica(id) {
+			Swal.fire({
+				title: 'Eliminar Consulta M&eacute;dica',
+				html: "Esta operaci&oacute;n no se podr&aacute; revertir",
+				icon : "warning",
+				showCancelButton: true,
+				confirmButtonText: 'S&iacute;, eliminar consulta m&eacute;dico',
+				confirmButtonColor: '#d33',
+				showLoaderOnConfirm: true,
+				preConfirm: () => {
+					return fetch("/web/consultaMedica/eliminar/" + id, { method: 'POST' })
+				      .then(response => {
+				    	  if (!response.ok) {
+				    		  throw new Error("Ocurrio un error")
+				    	  }
+				    	  return response.json()
+				      })
+				      .catch(error => {
+				    	  Swal.showValidationMessage(error)
+				      })
+				  },
+				allowOutsideClick: () => !Swal.isLoading()
+			}).then((result) => {
+				if (result.value) {
+					Swal.fire({
+						title: "Resultado",
+						text: result.value.message
+					}).then((result) => {
+						window.location = "/web/consultaMedica/listar";
+					})
+				}
+			});
+		} 
+	</script>
+</body>
+</html>
